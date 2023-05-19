@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public void save(CustomerRequestDTO dto) {
     Customer customer = Customer.builder()
-      .name(dto.getName())
+      .firstname(dto.getName())
       .email(dto.getEmail())
       .age(dto.getAge())
       .build();
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
     Customer customer = customerDao.findById(dto.getId()).orElse(null);
     if (customer != null) {
       customer.setEmail(dto.getEmail());
-      customer.setName(dto.getName());
+      customer.setFirstname(dto.getName());
       customer.setAge(dto.getAge());
       customerDao.save(customer);
     }
