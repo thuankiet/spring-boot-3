@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -26,6 +28,8 @@ public class AuthenticationService {
       .lastname(request.getLastname())
       .password(passwordEncoder.encode(request.getPassword()))
       .role(Role.USER)
+      .createdDate(new Date())
+      .lastModifiedDate(new Date())
       .build();
     customerDao.save(customer);
 
