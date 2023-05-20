@@ -17,4 +17,7 @@ spring:
   main:
     web-application-type: servlet
   flyway:
-    baselineOnMigrate: true
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline_version: 0

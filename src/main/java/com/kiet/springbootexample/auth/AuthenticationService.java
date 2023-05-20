@@ -30,6 +30,7 @@ public class AuthenticationService {
       .role(Role.USER)
       .createdDate(new Date())
       .lastModifiedDate(new Date())
+      .isActive(1)
       .build();
     customerDao.save(customer);
 

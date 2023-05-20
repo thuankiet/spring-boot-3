@@ -2,7 +2,9 @@ package com.kiet.springbootexample.serviceImpl;
 
 import com.kiet.springbootexample.dao.CustomerDao;
 import com.kiet.springbootexample.dto.request.CustomerRequestDTO;
+import com.kiet.springbootexample.dto.response.CustomerResponse;
 import com.kiet.springbootexample.entity.Customer;
+import com.kiet.springbootexample.mapper.CustomerMapper;
 import com.kiet.springbootexample.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +16,22 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
   private final CustomerDao customerDao;
+  private final CustomerMapper customerMapper;
 
   @Override
-  public Customer getCustomer(Long id) {
-    return customerDao.findById(id).orElse(null);
+  public CustomerResponse getCustomer(Long id) {
+    customerMapper.convertToCustomerResponse(customerDao.findById(id).orElse(null));
+    return customerMapper
+      .convertToCustomerResponse(customerDao.findById(id).orElse(null));
   }
 
   @Override
-  public List<Customer> getCustomers() {
-    return customerDao.findAll();
+  public List<CustomerResponse> getCustomers() {
+    return customerDao
+      .findAll()
+      .stream()
+      .map(customerMapper::convertToCustomerResponse)
+      .toList();
   }
 
   @Override

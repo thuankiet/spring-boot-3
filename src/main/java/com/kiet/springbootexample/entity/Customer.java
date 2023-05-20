@@ -1,6 +1,7 @@
 package com.kiet.springbootexample.entity;
 
 import com.kiet.springbootexample.util.Role;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -44,6 +45,7 @@ public class Customer implements UserDetails {
   private Role role;
   private Date createdDate;
   private Date lastModifiedDate;
+  private Integer isActive;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

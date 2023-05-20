@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ApplicationConfig {
 
   private final CustomerDao customerDao;
+  private final MyUserDetailsService myUserDetailsService;
 
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -24,15 +25,9 @@ public class ApplicationConfig {
   }
 
   @Bean
-  public UserDetailsService userDetailsService() {
-    return username -> customerDao.findByEmail(username)
-      .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-  }
-
-  @Bean
   public AuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    authenticationProvider.setUserDetailsService(userDetailsService());
+    authenticationProvider.setUserDetailsService(myUserDetailsService);
     authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
     return authenticationProvider;
   }
