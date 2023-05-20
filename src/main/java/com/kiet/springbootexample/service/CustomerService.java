@@ -1,14 +1,15 @@
 package com.kiet.springbootexample.service;
 
 import com.kiet.springbootexample.dto.request.CustomerRequestDTO;
+import com.kiet.springbootexample.dto.response.CustomerResponse;
 import com.kiet.springbootexample.entity.Customer;
 
 import java.util.List;
 
 public interface CustomerService {
-  Customer getCustomer(Long id);
+  CustomerResponse getCustomer(Long id);
 
-  List<Customer> getCustomers();
+  List<CustomerResponse> getCustomers();
 
   void save(CustomerRequestDTO dto);
 

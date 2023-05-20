@@ -1,6 +1,7 @@
 package com.kiet.springbootexample.controller;
 
 import com.kiet.springbootexample.dto.request.CustomerRequestDTO;
+import com.kiet.springbootexample.dto.response.CustomerResponse;
 import com.kiet.springbootexample.entity.Customer;
 import com.kiet.springbootexample.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +27,12 @@ public class CustomerController {
   private final CustomerService customerService;
 
   @GetMapping("/{id}")
-  public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
+  public ResponseEntity<CustomerResponse> getCustomer(@PathVariable Long id) {
     return ResponseEntity.ok(customerService.getCustomer(id));
   }
 
   @GetMapping
-  public ResponseEntity<List<Customer>> getCustomers() {
+  public ResponseEntity<List<CustomerResponse>> getCustomers() {
     return ResponseEntity.ok(customerService.getCustomers());
   }
 
