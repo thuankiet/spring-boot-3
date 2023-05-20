@@ -5,6 +5,7 @@ import com.kiet.springbootexample.entity.Customer;
 import com.kiet.springbootexample.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.util.List;
 
-@RestController
+@BaseController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
