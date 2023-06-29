@@ -2,6 +2,7 @@ package com.kiet.springbootexample.controller;
 
 import com.kiet.springbootexample.dto.request.CustomerRequestDTO;
 import com.kiet.springbootexample.dto.response.CustomerResponse;
+import com.kiet.springbootexample.dto.response.DataTableResponse;
 import com.kiet.springbootexample.entity.Customer;
 import com.kiet.springbootexample.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -32,8 +34,10 @@ public class CustomerController {
   }
 
   @GetMapping
-  public ResponseEntity<List<CustomerResponse>> getCustomers() {
-    return ResponseEntity.ok(customerService.getCustomers());
+  public ResponseEntity<DataTableResponse> getCustomers(
+    @RequestParam(defaultValue = "0") Integer pageNo,
+    @RequestParam(defaultValue = "10") Integer pageSize) {
+    return ResponseEntity.ok(customerService.getCustomerPage(pageNo, pageSize));
   }
 
   @PostMapping
