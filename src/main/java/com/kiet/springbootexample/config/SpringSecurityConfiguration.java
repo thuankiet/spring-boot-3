@@ -20,7 +20,7 @@ public class SpringSecurityConfiguration {
   private final AuthenticationProvider authenticationProvider;
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
      http
        .cors()
        .and()
