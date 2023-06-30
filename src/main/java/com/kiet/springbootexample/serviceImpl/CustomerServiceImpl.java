@@ -1,10 +1,12 @@
 package com.kiet.springbootexample.serviceImpl;
 
+import com.kiet.springbootexample.constant.MessageConstant;
 import com.kiet.springbootexample.dao.CustomerDao;
 import com.kiet.springbootexample.dto.request.CustomerRequestDTO;
 import com.kiet.springbootexample.dto.response.CustomerResponse;
 import com.kiet.springbootexample.dto.response.DataTableResponse;
 import com.kiet.springbootexample.entity.Customer;
+import com.kiet.springbootexample.exception.NotFoundException;
 import com.kiet.springbootexample.mapper.CustomerInterfaceProjectionMapper;
 import com.kiet.springbootexample.mapper.CustomerMapper;
 import com.kiet.springbootexample.service.CustomerService;
@@ -26,9 +28,12 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public CustomerResponse getCustomer(Long id) {
-    customerMapper.convertToCustomerResponse(customerDao.findById(id).orElse(null));
+    Customer customer = customerDao.findById(id).orElse(null);
+    if (customer == null) {
+      throw new NotFoundException(MessageConstant.USER_NOT_FOUND, id);
+    }
     return customerMapper
-      .convertToCustomerResponse(customerDao.findById(id).orElse(null));
+      .convertToCustomerResponse(customer);
   }
 
   @Override

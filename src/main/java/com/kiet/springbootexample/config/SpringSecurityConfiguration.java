@@ -29,7 +29,7 @@ public class SpringSecurityConfiguration {
        .authorizeHttpRequests()
        .requestMatchers("/api/v1/auth/**")
        .permitAll()
-       .requestMatchers("/api/v1/customers")
+       .requestMatchers("/api/v1/customers/*")
        .permitAll()
        .anyRequest()
        .authenticated()
